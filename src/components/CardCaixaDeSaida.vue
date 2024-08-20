@@ -3,7 +3,7 @@ import CaixaDeSaidaArray from "./CaixaDeSaidaArray.vue";
 </script>
 
 <template>
-  <v-card class="mx-auto" width="400">
+  <v-card class="mx-auto" width="400" height="300" subtitle="Seu texto final">
     <template v-slot:prepend>
       <v-icon class="rotated-icon">mdi-arrow-up-bold-box-outline</v-icon>
     </template>

@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <v-main>
-      <Index />
-    </v-main>
+    <Index />
   </v-app>
 </template>
 
