@@ -1,13 +1,15 @@
 <template>
   <v-main>
+    <AlertsJSON />
     <CardCaixaDeEntrada />
     <CardCaixaDeSaida />
   </v-main>
 </template>
 
 <script setup lang="ts">
-import CardCaixaDeEntrada from "./CardCaixaDeEntrada.vue";
-import CardCaixaDeSaida from "./CardCaixaDeSaida.vue";
+import AlertsJSON from "./Notifications/AlertsJSON.vue";
+import CardCaixaDeEntrada from "./Cards/CardCaixaDeEntrada.vue";
+import CardCaixaDeSaida from "./Cards/CardCaixaDeSaida.vue";
 </script>
 
 <style scoped>

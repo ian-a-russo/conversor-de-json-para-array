@@ -7,10 +7,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    CaixaDeEntradaJson: typeof import('./src/components/CaixaDeEntradaJson.vue')['default']
-    CaixaDeSaidaArray: typeof import('./src/components/CaixaDeSaidaArray.vue')['default']
-    CardCaixaDeEntrada: typeof import('./src/components/CardCaixaDeEntrada.vue')['default']
-    CardCaixaDeSaida: typeof import('./src/components/CardCaixaDeSaida.vue')['default']
+    AlertsJSON: typeof import('./src/components/Notifications/AlertsJSON.vue')['default']
+    CaixaDeEntradaJson: typeof import('./src/components/DataManagement/CaixaDeEntradaJson.vue')['default']
+    CaixaDeSaidaArray: typeof import('./src/components/DataManagement/CaixaDeSaidaArray.vue')['default']
+    CardCaixaDeEntrada: typeof import('./src/components/Cards/CardCaixaDeEntrada.vue')['default']
+    CardCaixaDeSaida: typeof import('./src/components/Cards/CardCaixaDeSaida.vue')['default']
     copy: typeof import('./src/components/CardCaixaDeEntrada copy.vue')['default']
     Index: typeof import('./src/components/Index.vue')['default']
     IndexConversor: typeof import('./src/components/IndexConversor.vue')['default']

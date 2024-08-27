@@ -9,17 +9,31 @@
 </template>
 
 <script setup lang="ts">
-import { useJsonStore } from "@/store";
+import { verifyJSON } from "@/api/verifyJson";
+import { useJsonStore, useAlertStore } from "@/store";
 import { ref } from "vue";
 
 const store = useJsonStore();
+const alertStore = useAlertStore();
 
 const jsonContent = ref("");
 
 function pesquisar(content: string) {
-  store.fetchJson(content);
-  store.converterChavesJSONParaArray();
-  console.log(store.getJsonConvertido);
+  const jsonAproved = verifyJSON(content);
+
+  if (jsonAproved) {
+    store.setJson(content);
+    store.jsonParaArray();
+    alertStore.setSuccessAlert();
+    return;
+  }
+  if (jsonAproved === false && content) {
+    alertStore.setErrorAlert();
+    return;
+  }
+
+  alertStore.setWarningAlert();
+  return;
 }
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CaixaDeEntradaJson from "./CaixaDeEntradaJson.vue";
+import CaixaDeEntradaJson from "../DataManagement/CaixaDeEntradaJson.vue";
 </script>
 
 <template>
