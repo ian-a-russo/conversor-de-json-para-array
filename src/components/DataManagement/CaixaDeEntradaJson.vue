@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-textarea label="JSON" v-model="jsonContent"></v-textarea>
+    <v-textarea label="JSON" v-model="jsonContent" no-resize></v-textarea>
     <v-btn @click="pesquisar(jsonContent)" color="primary">
       Converter
       <v-icon icon="mdi-checkbox-marked-circle" end></v-icon>

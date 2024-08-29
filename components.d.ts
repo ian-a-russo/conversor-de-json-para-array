@@ -15,5 +15,6 @@ declare module 'vue' {
     copy: typeof import('./src/components/CardCaixaDeEntrada copy.vue')['default']
     Index: typeof import('./src/components/Index.vue')['default']
     IndexConversor: typeof import('./src/components/IndexConversor.vue')['default']
+    JsonEditor: typeof import('./src/components/JsonEditor.vue')['default']
   }
 }

@@ -2,13 +2,13 @@ import { defineStore } from "pinia";
 
 type UseJsonStore = {
   json: string;
-  jsonConvertido: string[];
+  jsonConvertido: string;
 };
 export const useJsonStore = defineStore("useJsonStore", {
   state: (): UseJsonStore => {
     return {
       json: "",
-      jsonConvertido: [],
+      jsonConvertido: "",
     };
   },
   getters: {
@@ -18,33 +18,36 @@ export const useJsonStore = defineStore("useJsonStore", {
   actions: {
     jsonParaArray() {
       const jsonObject = JSON.parse(this.json);
-      const atributosJSON = [];
+      let jsonConvertidoArray = [];
+
       for (let chave in jsonObject) {
-        atributosJSON.push(`'${chave}'`);
+        jsonConvertidoArray.push(`'${chave}'`);
       }
 
-      this.jsonConvertido = atributosJSON;
+      this.jsonConvertido = jsonConvertidoArray.join(", \n");
     },
     setJson(json: string) {
       this.json = json;
     },
     upperJson() {
       const jsonObject = JSON.parse(this.json);
-      const atributosJSON = [];
+      let jsonConvertidoArray = [];
+
       for (let chave in jsonObject) {
-        atributosJSON.push(`'${chave.toUpperCase()}'`);
+        jsonConvertidoArray.push(`'${chave.toUpperCase()}'`);
       }
 
-      this.jsonConvertido = atributosJSON;
+      this.jsonConvertido = jsonConvertidoArray.join(", \n");
     },
     lowerJson() {
       const jsonObject = JSON.parse(this.json);
-      const atributosJSON = [];
+      let jsonConvertidoArray = [];
+
       for (let chave in jsonObject) {
-        atributosJSON.push(`'${chave.toLowerCase()}'`);
+        jsonConvertidoArray.push(`'${chave.toLowerCase()}'`);
       }
 
-      this.jsonConvertido = atributosJSON;
+      this.jsonConvertido = jsonConvertidoArray.join(", \n");
     },
   },
 });

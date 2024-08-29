@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-textarea :readonly="true" :value="array">{{ array }}</v-textarea>
+    <v-textarea :readonly="true" :value="array" no-resize></v-textarea>
     <v-container class="buttons">
       <v-btn class="mx-2" color="secondary" @click="lowerCaseJson()"
         >LowerCase</v-btn
@@ -21,6 +21,8 @@ const store = useJsonStore();
 
 let array = computed(() => store.getJsonConvertido);
 
+console.log(array.value);
+
 function lowerCaseJson() {
   store.lowerJson();
 }
@@ -39,5 +41,9 @@ function normalJson() {
   display: flex;
   justify-content: center;
   margin: -1.8rem 0 0 0;
+}
+
+.v-textarea {
+  height: 11rem;
 }
 </style>

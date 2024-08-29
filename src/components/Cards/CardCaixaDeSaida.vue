@@ -9,7 +9,7 @@ const alertStore = useAlertStore();
 const textToCopy = computed(() => store.jsonConvertido);
 
 async function copy() {
-  await navigator.clipboard.writeText(`[${textToCopy.value.toString()}]`);
+  await navigator.clipboard.writeText(`[\n${textToCopy.value.toString()}]`);
   alertStore.setSuccessCopyAlert();
 }
 </script>
