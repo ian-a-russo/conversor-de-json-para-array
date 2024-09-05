@@ -48,4 +48,11 @@ const warning = computed(() => store.getWarningAlert);
   width: 24rem;
   z-index: 1000;
 }
+
+@media (max-width: 1450px) {
+  .v-alert {
+    width: 15rem;
+    z-index: 1000;
+  }
+}
 </style>

@@ -4,11 +4,8 @@ import CaixaDeEntradaJson from "../DataManagement/CaixaDeEntradaJson.vue";
 
 <template>
   <v-card
-    class="mx-auto"
     prepend-icon="mdi-arrow-up-bold-box-outline"
     subtitle="Insira seu texto ou arquivo JSON aqui"
-    width="400"
-    height="300"
   >
     <CaixaDeEntradaJson />
     <template v-slot:title>
@@ -20,11 +17,17 @@ import CaixaDeEntradaJson from "../DataManagement/CaixaDeEntradaJson.vue";
 <style scoped>
 .v-card {
   position: relative;
+  width: 25rem;
+  height: 18.8rem;
 }
 
-.v-file-input {
-  position: absolute;
-  width: 80%;
-  margin: -2.9rem 0 0 1rem;
+@media (max-width: 1450px) {
+  .v-card {
+    width: 22.8rem;
+    height: 17.8rem;
+    margin-left: 0rem;
+    margin-top: -25rem;
+    position: absolute;
+  }
 }
 </style>

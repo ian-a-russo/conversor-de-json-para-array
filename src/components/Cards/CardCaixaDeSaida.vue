@@ -15,7 +15,7 @@ async function copy() {
 </script>
 
 <template>
-  <v-card class="mx-auto" width="400" height="300" subtitle="Seu texto final">
+  <v-card subtitle="Seu texto final">
     <template v-slot:prepend>
       <v-icon class="rotated-icon">mdi-arrow-up-bold-box-outline</v-icon>
       <v-btn class="copy" @click="copy">
@@ -30,6 +30,13 @@ async function copy() {
 </template>
 
 <style scoped>
+.v-card {
+  width: 25rem;
+  height: 18.8rem;
+  margin-left: 19rem;
+  position: relative;
+}
+
 .rotated-icon {
   display: inline-block;
   transform: rotate(180deg);
@@ -38,5 +45,15 @@ async function copy() {
   position: absolute;
   right: 1rem;
   top: 1rem;
+}
+
+@media (max-width: 1450px) {
+  .v-card {
+    width: 22.8rem;
+    height: 17.8rem;
+    margin-left: 0rem;
+    margin-top: 15rem;
+    position: absolute;
+  }
 }
 </style>

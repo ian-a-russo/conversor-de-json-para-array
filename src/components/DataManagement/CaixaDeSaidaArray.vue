@@ -46,4 +46,12 @@ function normalJson() {
 .v-textarea {
   height: 11rem;
 }
+
+@media (max-width: 1450px) {
+  .v-btn {
+    width: 6.5rem;
+    height: 1.8rem;
+    margin-top: -0.4rem;
+  }
+}
 </style>

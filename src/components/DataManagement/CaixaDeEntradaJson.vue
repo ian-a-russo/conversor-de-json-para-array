@@ -42,4 +42,12 @@ function pesquisar(content: string) {
   margin-top: -0.8rem;
   left: 14rem;
 }
+
+@media (max-width: 1450px) {
+  .v-btn {
+    width: 8.5rem;
+    margin-top: -1.5rem;
+    left: 13rem;
+  }
+}
 </style>
