@@ -16,18 +16,7 @@ import CaixaDeEntradaJson from "../DataManagement/CaixaDeEntradaJson.vue";
 
 <style scoped>
 .v-card {
-  position: relative;
-  width: 25rem;
-  height: 18.8rem;
-}
-
-@media (max-width: 1450px) {
-  .v-card {
-    width: 22.8rem;
-    height: 17.8rem;
-    margin-left: 0rem;
-    margin-top: -25rem;
-    position: absolute;
-  }
+  width: 100%;
+  height: 100%;
 }
 </style>

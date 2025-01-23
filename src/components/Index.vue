@@ -1,8 +1,14 @@
 <template>
-  <v-main>
+  <v-main class="d-flex justify-space-evenly">
     <AlertsJSON />
-    <CardCaixaDeEntrada />
-    <CardCaixaDeSaida />
+    <v-row class="v-col-card">
+      <v-col cols="12" md="6" class="d-flex justify-center align-center pa-6">
+        <CardCaixaDeEntrada />
+      </v-col>
+      <v-col cols="12" md="6" class="d-flex justify-center align-center pa-6"
+        ><CardCaixaDeSaida
+      /></v-col>
+    </v-row>
   </v-main>
 </template>
 
@@ -13,20 +19,7 @@ import CardCaixaDeSaida from "./Cards/CardCaixaDeSaida.vue";
 </script>
 
 <style scoped>
-.v-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10rem 3rem 10rem;
-}
-
-@media (max-width: 1450px) {
-  .v-main {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0 0 0;
-  }
+.v-col-card {
+  height: 100vh;
 }
 </style>

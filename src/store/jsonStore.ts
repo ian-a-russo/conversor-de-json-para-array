@@ -2,52 +2,53 @@ import { defineStore } from "pinia";
 
 type UseJsonStore = {
   json: string;
-  jsonConvertido: string;
+  formattedJson: string;
 };
+
 export const useJsonStore = defineStore("useJsonStore", {
   state: (): UseJsonStore => {
     return {
       json: "",
-      jsonConvertido: "",
+      formattedJson: "",
     };
   },
+
   getters: {
     getJson: (state) => state.json,
-    getJsonConvertido: (state) => state.jsonConvertido,
+    getformattedJson: (state) => state.formattedJson,
   },
+
   actions: {
-    jsonParaArray() {
-      const jsonObject = JSON.parse(this.json);
-      let jsonConvertidoArray = [];
-
-      for (let chave in jsonObject) {
-        jsonConvertidoArray.push(`'${chave}'`);
-      }
-
-      this.jsonConvertido = jsonConvertidoArray.join(", \n");
-    },
     setJson(json: string) {
       this.json = json;
     },
+    jsonToArray() {
+      this.formatJson(this.json, (key: string) => {
+        return `'${key}'`;
+      });
+    },
     upperJson() {
-      const jsonObject = JSON.parse(this.json);
-      let jsonConvertidoArray = [];
-
-      for (let chave in jsonObject) {
-        jsonConvertidoArray.push(`'${chave.toUpperCase()}'`);
-      }
-
-      this.jsonConvertido = jsonConvertidoArray.join(", \n");
+      this.formatJson(this.json, (key: string) => {
+        return `'${key.toUpperCase()}'`;
+      });
     },
     lowerJson() {
-      const jsonObject = JSON.parse(this.json);
-      let jsonConvertidoArray = [];
+      this.formatJson(this.json, (key: string) => {
+        return `'${key.toLowerCase()}'`;
+      });
+    },
 
-      for (let chave in jsonObject) {
-        jsonConvertidoArray.push(`'${chave.toLowerCase()}'`);
+    formatJson(originalJson: string, callback: (key: string) => string) {
+      if (!originalJson) return false;
+
+      let formattedJsonArray: string[] = [];
+
+      for (let key in JSON.parse(originalJson)) {
+        const formattedKey = callback(key);
+        formattedJsonArray.push(formattedKey);
       }
 
-      this.jsonConvertido = jsonConvertidoArray.join(", \n");
+      this.formattedJson = formattedJsonArray.join(", \n");
     },
   },
 });
