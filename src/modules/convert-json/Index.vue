@@ -1,6 +1,6 @@
 <template>
   <v-main class="mt-1 mx-1">
-    <AlertsJSON />
+    <Alert />
     <v-row class="align-center justify-center">
       <v-col cols="12" md="6">
         <CardJson />
@@ -13,5 +13,5 @@
 <script setup lang="ts">
 import CardArray from "./components/CardArray.vue";
 import CardJson from "./components/CardJson.vue";
-import AlertsJSON from "@/components/notifications/AlertsJSON.vue";
+import Alert from "@/components/notifications/Alert.vue";
 </script>
