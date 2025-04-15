@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { alertStore, jsonStore, TypeAlert } from "@/store";
 import { computed } from "vue";
-import JavaScriptCodearea from "../textarea/JavaScriptCodearea.vue";
+import JavaScriptCodearea from "@/components/textarea/JavaScriptCodearea.vue";
 
 const textToCopy = computed(() => jsonStore.formattedJson);
 

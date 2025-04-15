@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import CardArray from "./cards/CardArray.vue";
-import CardJson from "./cards/CardJson.vue";
-import AlertsJSON from "./notifications/AlertsJSON.vue";
+import CardArray from "./components/CardArray.vue";
+import CardJson from "./components/CardJson.vue";
+import AlertsJSON from "@/components/notifications/AlertsJSON.vue";
 </script>

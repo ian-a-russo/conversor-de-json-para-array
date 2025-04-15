@@ -48,7 +48,7 @@ import { JsonValidation } from "@/validations/verifyJson";
 import { ref } from "vue";
 import { jsonStore, TypeAlert, alertStore } from "@/store";
 import { computed } from "vue";
-import JSONCodearea from "../textarea/JSONCodearea.vue";
+import JSONCodearea from "@/components/textarea/JSONCodearea.vue";
 
 const textToCopy = computed(() => jsonStore.json);
 

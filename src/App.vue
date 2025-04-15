@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import Index from "./components/Index.vue";
+import Index from "@/modules/convert-json/Index.vue";
 </script>
 
 <style></style>
