@@ -62,9 +62,9 @@ const jsonContent = ref<string>("");
 const jsonValidation = new JsonValidation();
 
 function format(content: string) {
-  const jsonIsValid = jsonValidation.verifyJSON(content);
+  const jsonValid = jsonValidation.verifyJSON(content);
 
-  if (jsonIsValid) {
+  if (jsonValid) {
     jsonStore.setJson(content);
     return jsonStore.jsonToArray();
   }
