@@ -8,13 +8,17 @@
   },
   "dependencies": {
     "@codemirror/basic-setup": "^0.20.0",
-    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-javascript": "^6.2.3",
+    "@codemirror/lang-json": "^6.0.1",
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.33.0",
+    "@fsegurai/codemirror-theme-vscode-dark": "^6.1.2",
+    "@fsegurai/codemirror-theme-vscode-light": "^6.1.2",
     "@mdi/font": "7.4.47",
     "pinia": "^2.2.1",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
+    "vue-codemirror": "^6.1.1",
     "vuetify": "^3.6.11"
   },
   "devDependencies": {

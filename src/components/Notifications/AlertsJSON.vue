@@ -8,12 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import { useAlertStore } from "@/store/alertStore";
 import { computed } from "vue";
+import { alertStore } from "@/store";
 
-const store = useAlertStore();
-const isActive = computed(() => store.getIsActive);
-const alertConfig = computed(() => store.alertConfig);
+const isActive = computed(() => alertStore.isActive);
+const alertConfig = computed(() => alertStore.alertConfig);
 </script>
 
 <style scoped>

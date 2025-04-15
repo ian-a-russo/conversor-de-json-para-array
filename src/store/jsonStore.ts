@@ -1,54 +1,48 @@
-import { defineStore } from "pinia";
+import { reactive } from "vue";
 
-type UseJsonStore = {
+export type UseJsonStore = {
   json: string;
   formattedJson: string;
 };
 
-export const useJsonStore = defineStore("useJsonStore", {
-  state: (): UseJsonStore => {
-    return {
-      json: "",
-      formattedJson: "",
-    };
-  },
+class JsonStore {
+  public json: string = "";
+  public formattedJson: string = "";
 
-  getters: {
-    getJson: (state) => state.json,
-    getformattedJson: (state) => state.formattedJson,
-  },
+  setJson(json: string) {
+    this.json = json;
+  }
 
-  actions: {
-    setJson(json: string) {
-      this.json = json;
-    },
-    jsonToArray() {
-      this.formatJson(this.json, (key: string) => {
-        return `'${key}'`;
-      });
-    },
-    upperJson() {
-      this.formatJson(this.json, (key: string) => {
-        return `'${key.toUpperCase()}'`;
-      });
-    },
-    lowerJson() {
-      this.formatJson(this.json, (key: string) => {
-        return `'${key.toLowerCase()}'`;
-      });
-    },
+  jsonToArray() {
+    this.formatJson(this.json, (key: string) => {
+      return `'${key}'`;
+    });
+  }
 
-    formatJson(originalJson: string, callback: (key: string) => string) {
-      if (!originalJson) return false;
+  upperJson() {
+    this.formatJson(this.json, (key: string) => {
+      return `'${key.toUpperCase()}'`;
+    });
+  }
 
-      let formattedJsonArray: string[] = [];
+  lowerJson() {
+    this.formatJson(this.json, (key: string) => {
+      return `'${key.toLowerCase()}'`;
+    });
+  }
 
-      for (let key in JSON.parse(originalJson)) {
-        const formattedKey = callback(key);
-        formattedJsonArray.push(formattedKey);
-      }
+  formatJson(originalJson: string, callback: (key: string) => string) {
+    if (!originalJson) return false;
 
-      this.formattedJson = formattedJsonArray.join(", \n");
-    },
-  },
-});
+    let formattedJsonArray: string[] = [];
+
+    for (let key in JSON.parse(originalJson)) {
+      const formattedKey = callback(key);
+      formattedJsonArray.push(formattedKey);
+    }
+
+    this.formattedJson = formattedJsonArray.join(", \n");
+  }
+}
+
+export const jsonStore = reactive(new JsonStore());

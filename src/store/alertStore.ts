@@ -1,16 +1,10 @@
 import { toCorrectString } from "@/utils/correct-string";
-import { defineStore } from "pinia";
-
+import { reactive } from "vue";
 export enum TypeAlert {
   error = "error",
   warning = "warning",
   success = "success",
 }
-
-type UseAlertStore = {
-  isActive: boolean;
-  alertConfig: AlertConfig;
-};
 
 type AlertConfig = {
   text: string;
@@ -18,41 +12,33 @@ type AlertConfig = {
   typeofAlert: TypeAlert;
 };
 
-export const useAlertStore = defineStore("useAlertStore", {
-  state: (): UseAlertStore => {
-    return {
-      isActive: false,
-      alertConfig: {
-        text: "",
-        title: "",
-        typeofAlert: TypeAlert.success,
-      },
+class AlertStore {
+  public isActive: boolean = false;
+  public alertConfig: AlertConfig = {
+    text: "",
+    title: "",
+    typeofAlert: TypeAlert.success,
+  };
+
+  callAlert(typeofAlert: TypeAlert, message: string) {
+    this.alertConfig = {
+      text: message,
+      title: toCorrectString(typeofAlert),
+      typeofAlert,
     };
-  },
 
-  getters: {
-    getIsActive: (state) => state.isActive,
-    getAlertConfig: (state) => state.alertConfig,
-  },
+    this.generateAlert();
+  }
 
-  actions: {
-    callAlert(typeofAlert: TypeAlert, message: string) {
-      this.alertConfig = {
-        text: message,
-        title: toCorrectString(typeofAlert),
-        typeofAlert,
-      };
+  generateAlert() {
+    if (!this.isActive) {
+      console.log("oi");
+      this.isActive = true;
+      setTimeout(() => {
+        this.isActive = false;
+      }, 2000);
+    }
+  }
+}
 
-      this.generateAlert();
-    },
-
-    generateAlert() {
-      if (!this.isActive) {
-        this.isActive = true;
-        setTimeout(() => {
-          this.isActive = false;
-        }, 2000);
-      }
-    },
-  },
-});
+export const alertStore = reactive(new AlertStore());

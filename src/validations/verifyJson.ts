@@ -1,11 +1,9 @@
-import { TypeAlert, useAlertStore } from "@/store";
+import { TypeAlert, alertStore } from "@/store";
 
 export class JsonValidation {
-  private alertStore = useAlertStore();
-
   verifyJSON(jsonString: string): boolean {
     if (!jsonString) {
-      this.alertStore.callAlert(
+      alertStore.callAlert(
         TypeAlert.warning,
         "O campo JSON não pode ser vazio!"
       );
@@ -15,7 +13,7 @@ export class JsonValidation {
     try {
       JSON.parse(jsonString);
     } catch (error: any) {
-      this.alertStore.callAlert(
+      alertStore.callAlert(
         TypeAlert.error,
         `O JSON inserido está no formato inválido! Detalhes: ${String(
           error
@@ -25,7 +23,7 @@ export class JsonValidation {
       return false;
     }
 
-    this.alertStore.callAlert(
+    alertStore.callAlert(
       TypeAlert.success,
       "O JSON foi convertido com sucesso!"
     );
