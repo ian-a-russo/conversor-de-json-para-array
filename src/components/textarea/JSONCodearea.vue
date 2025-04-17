@@ -60,7 +60,7 @@ const timeout = ref();
 function updateCode(codeText: string) {
   clearTimeout(timeout.value);
   timeout.value = setTimeout(() => {
-    if (codeText.trim() === "") return emit("update:itemCodeProp", {});
+    if (codeText?.trim() === "") return emit("update:itemCodeProp", "{}");
 
     try {
       emit("update:itemCodeProp", codeText);

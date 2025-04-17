@@ -15,7 +15,7 @@
           rounded="lg"
           v-for="action in actions"
           :color="action.color"
-          @click="(jsonStore as any)[action.click]()"
+          @click="jsonStore.formatJson(action.click)"
           variant="tonal"
         >
           {{ action.title }}

@@ -1,3 +1,4 @@
+import { isArray } from "class-validator";
 import { reactive } from "vue";
 
 export type UseJsonStore = {
@@ -10,6 +11,30 @@ class JsonStore {
   public formattedJson: string = "[]";
   public isKeyArray: boolean = true;
 
+  private makeKeyArray(
+    json: any,
+    formatMethod: string,
+    formattedJsonArray: string[]
+  ) {
+    for (let key in json) {
+      const value = json[key];
+
+      if (value && typeof value === "object" && !Array.isArray(value)) {
+        const nestedKeys = Object.keys(value);
+
+        const formattedNested = nestedKeys.map((nk) =>
+          (this as any)[formatMethod](nk)
+        );
+
+        formattedJsonArray.push(`[${formattedNested.join(", \n  ")}]`);
+        continue;
+      }
+
+      const formattedKey = (this as any)[formatMethod](key);
+      formattedJsonArray.push(formattedKey);
+    }
+  }
+
   setJson(json: string) {
     this.json = json;
   }
@@ -18,35 +43,62 @@ class JsonStore {
     this.isKeyArray = value;
   }
 
-  jsonToArray() {
-    this.formatJson(this.json, (key: string) => {
-      return `'${key}'`;
-    });
+  normalJson(value: any): any {
+    if (typeof value === "string") return `'${value}'`;
+    if (isArray(value)) return value.map((item) => this.normalJson(item));
+    if (value && typeof value === "object") {
+      const result: any = [];
+      for (const key in value) {
+        result.push(
+          this.isKeyArray ? this.normalJson(value) : this.normalJson(value[key])
+        );
+      }
+      return `[${result.join(", \n  ")}]`;
+    }
+    return value;
   }
 
-  upperJson() {
-    this.formatJson(this.json, (key: string) => {
-      return `'${key.toUpperCase()}'`;
-    });
+  upperJson(value: any): any {
+    if (typeof value === "string") return `'${value.toUpperCase()}'`;
+    if (isArray(value)) return value.map((item) => this.upperJson(item));
+    if (value && typeof value === "object") {
+      const result: any = [];
+      for (const key in value) {
+        result.push(
+          this.isKeyArray ? this.upperJson(value) : this.upperJson(value[key])
+        );
+      }
+      return `[${result.join(", \n  ")}]`;
+    }
+    return value;
   }
 
-  lowerJson() {
-    this.formatJson(this.json, (key: string) => {
-      return `'${key.toLowerCase()}'`;
-    });
+  lowerJson(value: any): any {
+    if (typeof value === "string") return `'${value.toLowerCase()}'`;
+
+    if (isArray(value)) return value.map((item) => this.lowerJson(item));
+    if (value && typeof value === "object") {
+      const result: any = [];
+      for (const key in value) {
+        result.push(
+          this.isKeyArray
+            ? this.lowerJson(value[key])
+            : this.lowerJson(value[key])
+        );
+      }
+      return `[${result.join(", \n  ")}]`;
+    }
+    return value;
   }
 
-  formatJson(originalJsonString: string, callback: (value: string) => string) {
-    if (!originalJsonString) return false;
+  formatJson(formatMethod: string) {
+    if (!this.json) return false;
 
-    const originalJson = JSON.parse(originalJsonString);
+    const originalJson = JSON.parse(this.json);
     let formattedJsonArray: string[] = [];
 
     if (this.isKeyArray) {
-      for (let key in originalJson) {
-        const formattedKey = callback(key);
-        formattedJsonArray.push(formattedKey);
-      }
+      this.makeKeyArray(originalJson, formatMethod, formattedJsonArray);
 
       return (this.formattedJson = `[\n  ${formattedJsonArray.join(
         ", \n  "
@@ -54,7 +106,7 @@ class JsonStore {
     }
 
     for (let key in originalJson) {
-      const formattedKey = callback(originalJson[key]);
+      const formattedKey = (this as any)[formatMethod](originalJson[key]);
       formattedJsonArray.push(formattedKey);
     }
 

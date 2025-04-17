@@ -66,7 +66,7 @@ async function copy() {
 }
 
 const typeOfArray = ref("Key");
-const jsonContent = ref<string>("");
+const jsonContent = ref<string>("{}");
 const jsonValidation = new JsonValidation();
 
 function format(content: string) {
@@ -75,7 +75,7 @@ function format(content: string) {
 
   if (jsonValid) {
     jsonStore.setJson(content);
-    return jsonStore.jsonToArray();
+    return jsonStore.formatJson("normalJson");
   }
 }
 
