@@ -1,5 +1,5 @@
 <template>
-  <v-card subtitle="Lista com as chaves do JSON">
+  <v-card subtitle="Lista com os itens do JSON">
     <template v-slot:prepend>
       <v-icon class="rotated-icon">mdi-arrow-up-bold-box-outline</v-icon>
     </template>
@@ -43,7 +43,7 @@ import JavaScriptCodearea from "@/components/textarea/JavaScriptCodearea.vue";
 const textToCopy = computed(() => jsonStore.formattedJson);
 
 async function copy() {
-  await navigator.clipboard.writeText(`[\n${textToCopy.value.toString()}]`);
+  await navigator.clipboard.writeText(textToCopy.value);
 
   alertStore.callAlert(TypeAlert.success, "Copiado com sucesso!");
 }

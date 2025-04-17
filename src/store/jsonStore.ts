@@ -7,10 +7,15 @@ export type UseJsonStore = {
 
 class JsonStore {
   public json: string = "";
-  public formattedJson: string = "";
+  public formattedJson: string = "[]";
+  public isKeyArray: boolean = true;
 
   setJson(json: string) {
     this.json = json;
+  }
+
+  setIsKeyArray(value: boolean) {
+    this.isKeyArray = value;
   }
 
   jsonToArray() {
@@ -31,17 +36,31 @@ class JsonStore {
     });
   }
 
-  formatJson(originalJson: string, callback: (key: string) => string) {
-    if (!originalJson) return false;
+  formatJson(originalJsonString: string, callback: (value: string) => string) {
+    if (!originalJsonString) return false;
 
+    const originalJson = JSON.parse(originalJsonString);
     let formattedJsonArray: string[] = [];
 
-    for (let key in JSON.parse(originalJson)) {
-      const formattedKey = callback(key);
+    if (this.isKeyArray) {
+      for (let key in originalJson) {
+        const formattedKey = callback(key);
+        formattedJsonArray.push(formattedKey);
+      }
+
+      return (this.formattedJson = `[\n  ${formattedJsonArray.join(
+        ", \n  "
+      )}\n]`);
+    }
+
+    for (let key in originalJson) {
+      const formattedKey = callback(originalJson[key]);
       formattedJsonArray.push(formattedKey);
     }
 
-    this.formattedJson = formattedJsonArray.join(", \n");
+    return (this.formattedJson = `[\n  ${formattedJsonArray.join(
+      ", \n  "
+    )}\n]`);
   }
 }
 

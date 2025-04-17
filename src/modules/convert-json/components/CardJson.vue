@@ -39,6 +39,13 @@
     </v-card-text>
     <template v-slot:title>
       <span class="font-weight-black">JSON</span>
+
+      <div style="position: absolute; right: 0; top: 0">
+        <v-radio-group inline class="mx-5 my-5" v-model="typeOfArray">
+          <v-radio label="Chaves" value="Key" color="#9CDCFE"></v-radio>
+          <v-radio label="Valores" value="Value" color="#CE9178"></v-radio>
+        </v-radio-group>
+      </div>
     </template>
   </v-card>
 </template>
@@ -58,11 +65,13 @@ async function copy() {
   alertStore.callAlert(TypeAlert.success, "Copiado com sucesso!");
 }
 
+const typeOfArray = ref("Key");
 const jsonContent = ref<string>("");
 const jsonValidation = new JsonValidation();
 
 function format(content: string) {
   const jsonValid = jsonValidation.verifyJSON(content);
+  jsonStore.isKeyArray = typeOfArray.value == "Key";
 
   if (jsonValid) {
     jsonStore.setJson(content);
