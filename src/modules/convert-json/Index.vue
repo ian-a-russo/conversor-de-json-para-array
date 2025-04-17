@@ -5,7 +5,9 @@
       <v-col cols="12" md="6">
         <CardJson />
       </v-col>
-      <v-col cols="12" md="6"><CardArray /></v-col>
+      <v-col cols="12" md="6">
+        <CardArray />
+      </v-col>
     </v-row>
   </v-main>
 </template>

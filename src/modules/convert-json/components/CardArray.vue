@@ -1,5 +1,5 @@
 <template>
-  <v-card subtitle="Seu texto final">
+  <v-card subtitle="Lista com as chaves do JSON">
     <template v-slot:prepend>
       <v-icon class="rotated-icon">mdi-arrow-up-bold-box-outline</v-icon>
     </template>
@@ -8,9 +8,11 @@
         :item-code-prop="array"
         height="780px"
         max-height="1000px"
+        :is-readonly="true"
       />
       <v-card-actions class="d-flex justify-end align-center">
         <v-btn
+          rounded="lg"
           v-for="action in actions"
           :color="action.color"
           @click="(jsonStore as any)[action.click]()"
@@ -79,10 +81,5 @@ let array = computed(() => jsonStore.formattedJson);
 .rotated-icon {
   display: inline-block;
   transform: rotate(180deg);
-}
-.copy {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
 }
 </style>

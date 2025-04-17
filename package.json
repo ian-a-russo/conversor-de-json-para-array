@@ -1,5 +1,5 @@
 {
-  "name": "converterJSONEmArray",
+  "name": "converter-json-em-array",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -14,19 +14,19 @@
     "@codemirror/view": "^6.33.0",
     "@fsegurai/codemirror-theme-vscode-dark": "^6.1.2",
     "@fsegurai/codemirror-theme-vscode-light": "^6.1.2",
+    "vue-codemirror": "^6.1.1",
     "@mdi/font": "7.4.47",
     "pinia": "^2.2.1",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
-    "vue-codemirror": "^6.1.1",
     "vuetify": "^3.6.11"
   },
   "devDependencies": {
     "@babel/types": "^7.24.7",
     "@types/codemirror": "^5.60.15",
+    "codemirror": "^6.0.1",
     "@types/node": "^20.14.10",
     "@vitejs/plugin-vue": "^5.0.5",
-    "codemirror": "^6.0.1",
     "sass": "1.77.6",
     "typescript": "^5.4.2",
     "unplugin-fonts": "^1.1.1",
