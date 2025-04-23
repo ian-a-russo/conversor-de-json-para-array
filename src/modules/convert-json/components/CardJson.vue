@@ -1,5 +1,6 @@
 <template>
   <v-card
+    :max-height="vuetify.display.mobile.value ? '350px' : ''"
     color="grey-darken-4"
     prepend-icon="mdi-arrow-up-bold-box-outline"
     subtitle="Insira seu texto ou arquivo JSON aqui"
@@ -8,11 +9,23 @@
       <JSONCodearea
         :item-code-prop="jsonContent"
         @update:item-code-prop="(value: any) => (jsonContent = value)"
-        height="780px"
-        max-height="1000px"
+        :height="vuetify.display.mobile.value ? '220px' : '780px'"
+        max-height="1000"
       />
-      <v-card-actions class="d-flex justify-end align-center">
-        <v-btn @click="beautify()" color="cyan" variant="tonal" rounded="lg">
+      <v-card-actions
+        :class="
+          vuetify.display.mobile.value
+            ? 'd-flex justify-center align-center'
+            : 'd-flex justify-end align-center'
+        "
+      >
+        <v-btn
+          @click="beautify()"
+          color="cyan"
+          variant="tonal"
+          rounded="lg"
+          class="text-subtitle-1"
+        >
           Beautify JSON
           <v-tooltip activator="parent" location="left"
             >Formatar JSON</v-tooltip
@@ -21,6 +34,7 @@
         </v-btn>
         <v-btn
           @click="format(jsonContent as string)"
+          class="text-subtitle-1"
           color="primary"
           variant="tonal"
           rounded="lg"
@@ -31,7 +45,8 @@
           </v-tooltip>
           <v-icon icon="mdi-checkbox-marked-circle" end></v-icon>
         </v-btn>
-        <v-btn class="copy" size="35px" @click="copy" variant="tonal" icon>
+
+        <v-btn size="35px" @click="copy" variant="tonal" icon>
           <v-icon>mdi-content-copy</v-icon>
           <v-tooltip activator="parent" location="left">Copiar</v-tooltip>
         </v-btn>
@@ -40,7 +55,7 @@
     <template v-slot:title>
       <span class="font-weight-black">JSON</span>
 
-      <div style="position: absolute; right: 0; top: 0">
+      <div style="position: absolute; right: 0; top: -17px">
         <v-radio-group inline class="mx-5 my-5" v-model="typeOfArray">
           <v-radio label="Chaves" value="Key" color="#9CDCFE"></v-radio>
           <v-radio label="Valores" value="Value" color="#CE9178"></v-radio>
@@ -56,6 +71,7 @@ import { ref } from "vue";
 import { jsonStore, TypeAlert, alertStore } from "@/store";
 import { computed } from "vue";
 import JSONCodearea from "@/components/textarea/JSONCodearea.vue";
+import vuetify from "@/plugins/vuetify";
 
 const textToCopy = computed(() => jsonStore.json);
 

@@ -1,18 +1,28 @@
 <template>
-  <v-card subtitle="Lista com os itens do JSON">
+  <v-card
+    subtitle="Lista com os itens do JSON"
+    :max-height="vuetify.display.mobile.value ? '350' : ''"
+  >
     <template v-slot:prepend>
       <v-icon class="rotated-icon">mdi-arrow-up-bold-box-outline</v-icon>
     </template>
     <v-card-text>
       <JavaScriptCodearea
         :item-code-prop="array"
-        height="780px"
+        :height="vuetify.display.mobile.value ? '220px' : '780px'"
         max-height="1000px"
         :is-readonly="true"
       />
-      <v-card-actions class="d-flex justify-end align-center">
+      <v-card-actions
+        :class="
+          vuetify.display.mobile.value
+            ? 'd-flex justify-center align-center'
+            : 'd-flex justify-end align-center'
+        "
+      >
         <v-btn
           rounded="lg"
+          class="text-subtitle-1"
           v-for="action in actions"
           :color="action.color"
           @click="jsonStore.formatJson(action.click)"
@@ -23,7 +33,7 @@
             action.description
           }}</v-tooltip>
         </v-btn>
-        <v-btn class="copy" size="35px" @click="copy" variant="tonal" icon>
+        <v-btn class="mx-0" size="35px" @click="copy" variant="tonal" icon>
           <v-icon>mdi-content-copy</v-icon>
           <v-tooltip activator="parent" location="left">Copiar</v-tooltip>
         </v-btn>
@@ -39,6 +49,7 @@
 import { alertStore, jsonStore, TypeAlert } from "@/store";
 import { computed } from "vue";
 import JavaScriptCodearea from "@/components/textarea/JavaScriptCodearea.vue";
+import vuetify from "@/plugins/vuetify";
 
 const textToCopy = computed(() => jsonStore.formattedJson);
 
