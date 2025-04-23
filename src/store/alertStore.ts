@@ -32,7 +32,6 @@ class AlertStore {
 
   generateAlert() {
     if (!this.isActive) {
-      console.log("oi");
       this.isActive = true;
       setTimeout(() => {
         this.isActive = false;

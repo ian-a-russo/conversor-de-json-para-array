@@ -2,7 +2,7 @@ import { TypeAlert, alertStore } from "@/store";
 
 export class JsonValidation {
   verifyJSON(jsonString: string): boolean {
-    if (!jsonString) {
+    if (!jsonString || jsonString == "{}") {
       alertStore.callAlert(
         TypeAlert.warning,
         "O campo JSON não pode ser vazio!"
@@ -19,7 +19,6 @@ export class JsonValidation {
           error
         ).slice(12)}`
       );
-      console.log(error);
       return false;
     }
 
